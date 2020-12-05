@@ -3,7 +3,7 @@ import numpy
 from . import blas
 
 try:
-    from thinc.ops import NumpyOps
+    from thinc.api import NumpyOps
     from thinc.types import Floats2d
 except ImportError:
     class NumpyOps:
@@ -14,6 +14,7 @@ class AppleOps(NumpyOps):
     """Thinc Ops class that calls into Apple's native libraries for some
     operations. Other operations fall back to numpy."""
     name = "apple"
+    xp = numpy
 
     def gemm(
         self,
@@ -26,7 +27,7 @@ class AppleOps(NumpyOps):
         """Perform General Matrix Multiplication (GeMM) and optionally store
         the result in the specified output variable.
         """
-        C = blas.gemm(A, B, trans1=trans1, trans2=trans2)
+        C = blas.gemm(x, y, trans1=trans1, trans2=trans2)
         if out is None:
             return C
         else:
