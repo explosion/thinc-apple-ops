@@ -36,6 +36,7 @@ website/_deploy.sh
 # Cython / C extensions
 cythonize.json
 *.cpp
+*.c
 *.so
 *.so.1
 
