@@ -1,1 +1,4 @@
-numpy>=1.0.0,<2.0.0
+cython>=0.25
+numpy>=1.21.0
+# dev
+pytest>=5.2.0
