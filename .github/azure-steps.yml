@@ -1,0 +1,38 @@
+parameters:
+  python_version: ''
+  architecture: ''
+  prefix: ''
+
+steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: ${{ parameters.python_version }}
+      architecture: ${{ parameters.architecture }}
+
+  - script: |
+      ${{ parameters.prefix }} python -m pip install --upgrade pip setuptools
+      ${{ parameters.prefix }} python -m pip install -r requirements.txt
+    displayName: 'Install dependencies'
+
+  - script: |
+      ${{ parameters.prefix }} python setup.py build_ext --inplace
+      ${{ parameters.prefix }} python setup.py sdist
+    displayName: 'Build sdist'
+
+  - script: |
+      ${{ parameters.prefix }} python -m pip freeze > installed.txt
+      ${{ parameters.prefix }} python -m pip uninstall -y -r installed.txt
+    displayName: 'Uninstall all packages'
+
+  - script: |
+      ${{ parameters.prefix }} python -m pip install dist/*.tar.gz
+    displayName: 'Install from sdist'
+
+  - script: |
+      ${{ parameters.prefix }} python -m pip wheel . -w dist
+    displayName: 'Build wheel'
+
+  - script: |
+      ${{ parameters.prefix }} python -m pip install -r requirements.txt
+      ${{ parameters.prefix }} python -m pytest --pyargs thinc_apple_ops
+    displayName: 'Run tests'

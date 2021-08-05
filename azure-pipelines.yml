@@ -1,0 +1,22 @@
+trigger:
+  batch: true
+  branches:
+    include:
+    - '*'
+
+jobs:
+
+- job: 'Tests'
+  strategy:
+    matrix:
+      Python39MacARM64:
+        python.version: '3.9'
+  pool:
+    name: "MacARM64"
+
+  steps:
+  - template: .github/azure-steps.yml
+    parameters:
+      python_version: '$(python.version)'
+      architecture: 'X64'
+      prefix: 'arch -arm64'
