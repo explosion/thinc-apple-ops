@@ -1,14 +1,9 @@
 from typing import Optional
 import numpy
+from thinc.api import NumpyOps
+from thinc.types import Floats2d
 from . import blas
 
-try:
-    from thinc.api import NumpyOps
-    from thinc.types import Floats2d
-except ImportError:
-    class NumpyOps:
-        pass
-    Floats2d = numpy.ndarray
     
 class AppleOps(NumpyOps):
     """Thinc Ops class that calls into Apple's native libraries for some
