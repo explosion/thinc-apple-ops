@@ -4,11 +4,11 @@ import os
 import sys
 import numpy
 
-from setuptools import Extension, setup
+from setuptools import Extension, setup, find_packages
 from Cython.Build import cythonize
 
 
-PACKAGES = ["thinc_apple_ops"]
+PACKAGES = find_packages()
 MOD_NAMES = ["thinc_apple_ops.blas"]
 
 
