@@ -6,7 +6,7 @@ trigger:
 
 jobs:
 
-- job: 'Tests X86'
+- job: 'TestsX86'
   strategy:
     matrix:
       Python39:
@@ -18,7 +18,7 @@ jobs:
       python_version: '$(python.version)'
       architecture: 'X64'
 
-- job: 'Tests ARM'
+- job: 'TestsARM'
   strategy:
     matrix:
       Python39MacARM64:
