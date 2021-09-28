@@ -9,7 +9,8 @@ jobs:
 - job: 'TestsX86'
   strategy:
     matrix:
-      Python39:
+      Python39Mac:
+        imageName: "macos-10.14"
         python.version: '3.9'
 
   steps:
