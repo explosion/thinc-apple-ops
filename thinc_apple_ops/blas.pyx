@@ -41,6 +41,8 @@ cpdef np.ndarray gemm(float[:, ::1] A, float[:, ::1] B, bint trans1=False, bint 
     cdef np.ndarray out = numpy.zeros((nM, nN), dtype="f")
 
     cdef float[:, ::1] C = out
+    if nM == 0 or nK == 0 or nN == 0:
+        return out
 
     cblas_sgemm(
         CblasRowMajor,
