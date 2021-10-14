@@ -1,5 +1,5 @@
 cython>=0.25
 numpy>=1.21.0
-thinc>=8.0.10
+thinc>=8.0.10,<9.0.0
 # dev
 pytest>=5.2.0
