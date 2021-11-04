@@ -58,11 +58,11 @@ Mac Mini and AMD Ryzen 5900X are also provided for comparison. Results are in
 words per second. In this prediction benchmark, using `thinc-apple-ops` improves
 performance by *4.3** times.
 
-| *CPU*                    | *BLIS* | *thinc-apple-ops* |
-| ------------------------ | ------ | ----------------- |
-| Mac Mini (M1)            | 6492   | 27676             |
-| MacBook Air Core i5 2020 |        |                   |
-| AMD Ryzen 5900X          | 22568  | N/A               |
+| *CPU*                    | *BLIS* | *thinc-apple-ops* | *Package power (Watt)* |
+| ------------------------ | ------ | ----------------- | ---------------------- |
+| Mac Mini (M1)            | 6492   | 27676             | 5                      |
+| MacBook Air Core i5 2020 |        |                   |                        |
+| AMD Ryzen 5900X          | 22568  | N/A               | 52                     |
 
 ### Training
 
@@ -70,8 +70,8 @@ In the second benchmark, we compare the training speed of the `de_core_news_lg`
 spaCy model (without NER). The results are in training iterations per second.
 Using `thinc-apple-ops` improves training time by *3.0** times
 
-| *CPU*                    | *BLIS* | *thinc-apple-ops* |
-| ------------------------ | ------ | ----------------- |
-| Mac Mini M1 2020         | 3.34   | 10.07             |
-| MacBook Air Core i5 2020 |        |                   |
-| AMD Ryzen 5900X          | 6.53   | N/A               |
+| *CPU*                    | *BLIS* | *thinc-apple-ops* | *Package power (Watt)* |
+| ------------------------ | ------ | ----------------- | ---------------------- |
+| Mac Mini M1 2020         | 3.34   | 10.07             | 5                      |
+| MacBook Air Core i5 2020 |        |                   |                        |
+| AMD Ryzen 5900X          | 6.53   | N/A               | 53                     |
