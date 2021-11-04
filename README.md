@@ -56,7 +56,7 @@ This first benchark compares prediction speed of the `de_core_news_lg` spaCy
 model between the M1 with and without `thinc-apple-ops`. Results for an Intel
 Mac Mini and AMD Ryzen 5900X are also provided for comparison. Results are in
 words per second. In this prediction benchmark, using `thinc-apple-ops` improves
-performance by *4.3** times.
+performance by **4.3** times.
 
 | *CPU*                    | *BLIS* | *thinc-apple-ops* | *Package power (Watt)* |
 | ------------------------ | ------ | ----------------- | ---------------------- |
@@ -68,7 +68,7 @@ performance by *4.3** times.
 
 In the second benchmark, we compare the training speed of the `de_core_news_lg`
 spaCy model (without NER). The results are in training iterations per second.
-Using `thinc-apple-ops` improves training time by *3.0** times
+Using `thinc-apple-ops` improves training time by **3.0** times
 
 | *CPU*                    | *BLIS* | *thinc-apple-ops* | *Package power (Watt)* |
 | ------------------------ | ------ | ----------------- | ---------------------- |
