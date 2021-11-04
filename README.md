@@ -2,7 +2,7 @@
 
 # thinc-apple-ops
 
-Make [thinc](https://thinc.ai) faster on macOS by calling into Apple's native
+Make [spaCy](https://spacy.io) and [Thinc](https://thinc.ai) **up to 8 &times; faster** on macOS by calling into Apple's native
 libraries.
 
 ## 🏫 Motivation
