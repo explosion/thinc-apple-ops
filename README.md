@@ -59,10 +59,10 @@ words per second. In this prediction benchmark, using `thinc-apple-ops` improves
 performance by *4.3** times.
 
 | *CPU*                    | *BLIS* | *thinc-apple-ops* | *Package power (Watt)* |
-| ------------------------ | ------ | ----------------- | ---------------------- |
-| Mac Mini (M1)            | 6492   | 27676             | 5                      |
+| ------------------------ | -----: | ----------------: | ---------------------: |
+| Mac Mini (M1)            |   6492 |             27676 |                      5 |
 | MacBook Air Core i5 2020 |        |                   |                        |
-| AMD Ryzen 5900X          | 22568  | N/A               | 52                     |
+| AMD Ryzen 5900X          |  22568 |               N/A |                     52 |
 
 ### Training
 
@@ -71,7 +71,7 @@ spaCy model (without NER). The results are in training iterations per second.
 Using `thinc-apple-ops` improves training time by *3.0** times
 
 | *CPU*                    | *BLIS* | *thinc-apple-ops* | *Package power (Watt)* |
-| ------------------------ | ------ | ----------------- | ---------------------- |
-| Mac Mini M1 2020         | 3.34   | 10.07             | 5                      |
+| ------------------------ | -----: | ----------------: | ---------------------: |
+| Mac Mini M1 2020         |   3.34 |             10.07 |                      5 |
 | MacBook Air Core i5 2020 |        |                   |                        |
-| AMD Ryzen 5900X          | 6.53   | N/A               | 53                     |
+| AMD Ryzen 5900X          |   6.53 |               N/A |                     53 |
