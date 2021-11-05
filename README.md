@@ -2,8 +2,17 @@
 
 # thinc-apple-ops
 
-Make [spaCy](https://spacy.io) and [Thinc](https://thinc.ai) **up to 8 &times; faster** on macOS by calling into Apple's native
-libraries.
+Make [spaCy](https://spacy.io) and [Thinc](https://thinc.ai) **up to 8 &times; faster**
+on macOS by calling into Apple's native libraries.
+
+## ⏳ Install
+
+Make sure you have [Xcode](https://developer.apple.com/xcode/) installed and
+then install with `pip`:
+
+```bash
+pip install thinc-apple-ops
+```
 
 ## 🏫 Motivation
 
