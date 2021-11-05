@@ -38,7 +38,7 @@ cpdef np.ndarray gemm(float[:, ::1] A, float[:, ::1] B, bint trans1=False, bint 
     cdef int nM = A.shape[0] if not trans1 else A.shape[1]
     cdef int nK = A.shape[1] if not trans1 else A.shape[0]
     cdef int nN = B.shape[1] if not trans2 else B.shape[0]
-    cdef np.ndarray out = numpy.zeros((nM, nN), dtype="f")
+    cdef np.ndarray out = numpy.empty((nM, nN), dtype="f")
 
     cdef float[:, ::1] C = out
     if nM == 0 or nK == 0 or nN == 0:
@@ -56,7 +56,7 @@ cpdef np.ndarray gemm(float[:, ::1] A, float[:, ::1] B, bint trans1=False, bint 
         A.shape[1],
         &B[0, 0],
         B.shape[1],
-        1.0,
+        0.0,
         &C[0, 0],
         C.shape[1]
     )
