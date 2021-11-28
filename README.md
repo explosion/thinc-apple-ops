@@ -61,7 +61,7 @@ Apple Silicon Macs, as shown by the benchmarks below.
 
 ### Prediction
 
-This first benchark compares prediction speed of the `de_core_news_lg` spaCy
+This first benchmark compares prediction speed of the `de_core_news_lg` spaCy
 model between the M1 with and without `thinc-apple-ops`. Results for an Intel
 Mac Mini and AMD Ryzen 5900X are also provided for comparison. Results are in
 words per second. In this prediction benchmark, using `thinc-apple-ops` improves
