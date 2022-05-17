@@ -42,7 +42,7 @@ cpdef np.ndarray gemm(float[:, ::1] A, float[:, ::1] B, bint trans1=False, bint 
     cdef np.ndarray out = numpy.empty((nM, nN), dtype="f")
 
     if nK != nK_b:
-        msg = "Shape mismatch for blis.gemm: (%d, %d), (%d, %d)"
+        msg = "Shape mismatch for gemm: (%d, %d), (%d, %d)"
         raise ValueError(msg % (nM, nK, nK_b, nN))
 
     cdef float[:, ::1] C = out
