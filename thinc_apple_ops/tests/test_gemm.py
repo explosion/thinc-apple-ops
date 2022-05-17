@@ -34,3 +34,17 @@ def test_zero_size(A_shape, B_shape, transA, transB):
     assert C.shape == C_.shape
 
 
+@pytest.mark.parametrize(
+    "A_shape,B_shape,transA,transB",
+    [
+        [(4, 5), (4, 5), False, False],
+        [(5, 4), (4, 5), True, False],
+        [(4, 5), (5, 4), False, True],
+        [(5, 4), (5, 4), True, True],
+    ],
+)
+def test_incorrect_shapes(A_shape, B_shape, transA, transB):
+    A = numpy.ndarray(A_shape, dtype="f")
+    B = numpy.ndarray(B_shape, dtype="f")
+    with pytest.raises(ValueError, match=r"Shape mismatch"):
+        thinc_apple_ops.blas.gemm(A, B, trans1=transA, trans2=transB)
