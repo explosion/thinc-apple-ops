@@ -1,15 +1,23 @@
 from typing import Optional
 import numpy
 from thinc.api import NumpyOps
+from thinc.backends.cblas cimport CBlas
 from thinc.types import Floats2d
 from . import blas
+from .blas cimport saxpy, sgemm
 
-    
+
 class AppleOps(NumpyOps):
     """Thinc Ops class that calls into Apple's native libraries for some
     operations. Other operations fall back to numpy."""
     name = "apple"
     xp = numpy
+
+    def cblas(self) -> CBlas:
+        cdef CBlas cblas = CBlas()
+        cblas.set_saxpy(saxpy)
+        cblas.set_sgemm(sgemm)
+        return cblas
 
     def gemm(
         self,

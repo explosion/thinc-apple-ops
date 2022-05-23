@@ -29,6 +29,12 @@ def setup_package():
             include_dirs=[numpy.get_include()],
             libraries=["blas"],
         ),
+        Extension(
+            "thinc_apple_ops.ops",
+            ["thinc_apple_ops/ops.pyx"],
+            language="c++",
+            include_dirs=[numpy.get_include()],
+        ),
     ]
 
     setup(
