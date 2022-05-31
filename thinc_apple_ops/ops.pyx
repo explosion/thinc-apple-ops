@@ -1,7 +1,7 @@
 from typing import Optional
 import numpy
-from thinc.api import NumpyOps
 from thinc.backends.cblas cimport CBlas
+from thinc.backends.numpy_ops import NumpyOps
 from thinc.types import Floats2d
 from . import blas
 from .blas cimport saxpy, sgemm
