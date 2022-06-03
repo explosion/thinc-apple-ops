@@ -30,9 +30,4 @@ class AppleOps(NumpyOps):
         """Perform General Matrix Multiplication (GeMM) and optionally store
         the result in the specified output variable.
         """
-        C = blas.gemm(x, y, trans1=trans1, trans2=trans2)
-        if out is None:
-            return C
-        else:
-            out[:] = C
-            return out
+        return blas.gemm(x, y, out=out, trans1=trans1, trans2=trans2)
