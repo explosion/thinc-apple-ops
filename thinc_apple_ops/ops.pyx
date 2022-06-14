@@ -7,6 +7,15 @@ from . import blas
 from .blas cimport saxpy, sgemm
 
 
+def init_cblas() -> CBlas:
+    cdef CBlas cblas = CBlas()
+    cblas.set_saxpy(saxpy)
+    cblas.set_sgemm(sgemm)
+    return cblas
+
+cblas = init_cblas()
+
+
 class AppleOps(NumpyOps):
     """Thinc Ops class that calls into Apple's native libraries for some
     operations. Other operations fall back to numpy."""
@@ -14,9 +23,6 @@ class AppleOps(NumpyOps):
     xp = numpy
 
     def cblas(self) -> CBlas:
-        cdef CBlas cblas = CBlas()
-        cblas.set_saxpy(saxpy)
-        cblas.set_sgemm(sgemm)
         return cblas
 
     def gemm(
