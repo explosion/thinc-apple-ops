@@ -3,8 +3,9 @@ cimport numpy as np
 import numpy
 
 
-cpdef np.ndarray gemm(float[:, ::1] A, float[:, ::1] B, np.ndarray out=None,
-                      bint trans1=False, bint trans2=False):
+cpdef np.ndarray gemm(float[:, ::1] A, float[:, ::1] B,
+                      bint trans1=False, bint trans2=False,
+                      np.ndarray out=None):
     cdef int nM = A.shape[0] if not trans1 else A.shape[1]
     cdef int nK = A.shape[1] if not trans1 else A.shape[0]
     cdef int nK_b = B.shape[0] if not trans2 else B.shape[1]
