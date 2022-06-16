@@ -1,6 +1,6 @@
 from typing import Optional
 import numpy
-from thinc.backends.cblas cimport CBlas
+from thinc.backends.cblas cimport CBlas, set_saxpy, set_sgemm
 from thinc.backends.numpy_ops import NumpyOps
 from thinc.types import Floats2d
 from . import blas
@@ -15,8 +15,8 @@ class AppleOps(NumpyOps):
 
     def cblas(self) -> CBlas:
         cdef CBlas cblas = CBlas()
-        cblas.set_saxpy(saxpy)
-        cblas.set_sgemm(sgemm)
+        set_saxpy(cblas, saxpy)
+        set_sgemm(cblas, sgemm)
         return cblas
 
     def gemm(
