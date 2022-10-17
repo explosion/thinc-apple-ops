@@ -8,6 +8,7 @@ steps:
     inputs:
       versionSpec: ${{ parameters.python_version }}
       architecture: ${{ parameters.architecture }}
+      allowUnstable: true
 
   - script: |
       ${{ parameters.prefix }} python -m pip install --upgrade pip setuptools
