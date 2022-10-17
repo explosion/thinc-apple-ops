@@ -1,4 +1,5 @@
 # build version constraints for use with wheelwright + multibuild
 numpy==1.21.0; python_version<='3.9'
 numpy==1.21.3; python_version=='3.10'
-numpy; python_version>='3.11'
+numpy==1.23.2; python_version=='3.11'
+numpy; python_version>='3.12'

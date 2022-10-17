@@ -12,10 +12,13 @@ jobs:
       Python39Mac:
         imageName: "macos-latest"
         python.version: '3.9'
+      Python311Mac:
+        imageName: "macos-latest"
+        python.version: '3.11.0-rc.2'
   pool:
       vmImage: $(imageName)
   steps:
   - template: .github/azure-steps.yml
     parameters:
       python_version: '$(python.version)'
-      architecture: 'X64'
+      architecture: 'x64'
