@@ -50,7 +50,7 @@ cpdef np.ndarray gemm(float[:, ::1] A, float[:, ::1] B,
 
 cdef void sgemm(bint TransA, bint TransB, int M, int N, int K,
                     float alpha, const float* A, int lda, const float *B,
-                    int ldb, float beta, float* C, int ldc) nogil:
+                    int ldb, float beta, float* C, int ldc) noexcept nogil:
     cblas_sgemm(
         CblasRowMajor,
         CblasTrans if TransA else CblasNoTrans,
@@ -70,5 +70,5 @@ cdef void sgemm(bint TransA, bint TransB, int M, int N, int K,
 
 
 cdef void saxpy(int N, float alpha, const float* X, int incX,
-                float *Y, int incY) nogil:
+                float *Y, int incY) noexcept nogil:
     cblas_saxpy(N, alpha, X, incX, Y, incY)

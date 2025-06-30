@@ -33,8 +33,8 @@ cdef extern from "Accelerate/Accelerate.h":
 
 cdef void sgemm(bint TransA, bint TransB, int M, int N, int K,
                     float alpha, const float* A, int lda, const float *B,
-                    int ldb, float beta, float* C, int ldc) nogil
+                    int ldb, float beta, float* C, int ldc) noexcept nogil
 
 
 cdef void saxpy(int N, float alpha, const float* X, int incX,
-                float *Y, int incY) nogil
+                float *Y, int incY) noexcept nogil
