@@ -9,6 +9,8 @@ on:
     paths-ignore:
       - "*.md"
 
+permissions:
+  contents: read
 env:
   MODULE_NAME: 'thinc_apple_ops'
   RUN_MYPY: 'false'
