@@ -7,93 +7,19 @@ on:
       # ** matches 'zero or more of any character'
       - 'release-v[0-9]+.[0-9]+.[0-9]+**'
       - 'prerelease-v[0-9]+.[0-9]+.[0-9]+**'
+
+permissions: {}
+
 jobs:
   build_wheels:
-    name: Build wheels on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        # macos-13 is an intel runner, macos-14 is apple silicon
-        os: [macos-13, macos-14]
-
-    steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
-      # aarch64 (arm) is built via qemu emulation
-      # QEMU is sadly too slow. We need to wait for public ARM support
-      #- name: Set up QEMU
-      #  if: runner.os == 'Linux'
-      #  uses: docker/setup-qemu-action@v3
-      #  with:
-      #    platforms: all
-      - name: Build wheels
-        uses: pypa/cibuildwheel@b28b40222781ae92b339750bb0962630c8d31757 # v2.19.1
-        env:
-          CIBW_ARCHS_LINUX: auto
-        with:
-          package-dir: .
-          output-dir: wheelhouse
-          config-file: "{package}/pyproject.toml"
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
-          path: ./wheelhouse/*.whl
-
-  build_sdist:
-    name: Build source distribution
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
-
-      - name: Build sdist
-        run: pipx run build --sdist
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: cibw-sdist
-          path: dist/*.tar.gz
-  create_release:
-    needs: [build_wheels, build_sdist]
-    runs-on: ubuntu-latest
+    uses: explosion/gha-cibuildwheel/.github/workflows/cibuildwheel.yml@2ade48ac7d4fed55e9f24f73eddd8f280722a2f8 # main
     permissions:
       contents: write
-      checks: write
       actions: read
-      issues: read
-      packages: write
-      pull-requests: read
-      repository-projects: read
-      statuses: read
-    steps:
-      - name: Get the tag name and determine if it's a prerelease
-        id: get_tag_info
-        run: |
-          FULL_TAG=${GITHUB_REF#refs/tags/}
-          if [[ $FULL_TAG == release-* ]]; then
-            TAG_NAME=${FULL_TAG#release-}
-            IS_PRERELEASE=false
-          elif [[ $FULL_TAG == prerelease-* ]]; then
-            TAG_NAME=${FULL_TAG#prerelease-}
-            IS_PRERELEASE=true
-          else
-            echo "Tag does not match expected patterns" >&2
-            exit 1
-          fi
-          echo "FULL_TAG=$TAG_NAME" >> $GITHUB_ENV
-          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
-          echo "IS_PRERELEASE=$IS_PRERELEASE" >> $GITHUB_ENV
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
-        with:
-          # unpacks all CIBW artifacts into dist/
-          pattern: cibw-*
-          path: dist
-          merge-multiple: true
-      - name: Create Draft Release
-        id: create_release
-        uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2
-        if: startsWith(github.ref, 'refs/tags/')
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          name: ${{ env.TAG_NAME }}
-          draft: true
-          prerelease: ${{ env.IS_PRERELEASE }}
-          files: "./dist/*" 
+    with:
+      pure-python: false
+      wheel-name-pattern: "thinc_apple_ops-*.whl"
+      # Apple's Accelerate framework is only available on macOS
+      os-matrix: '["macos-15-intel", "macos-latest"]'
+    secrets:
+      gh-token: ${{ secrets.GITHUB_TOKEN }}
